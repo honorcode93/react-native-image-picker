@@ -49,6 +49,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import com.facebook.react.modules.core.PermissionListener;
+import com.facebook.react.modules.core.PermissionAwareActivity;
 
 import static com.imagepicker.utils.MediaUtils.*;
 import static com.imagepicker.utils.MediaUtils.createNewFile;
@@ -597,9 +598,9 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
       else
       {
         String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
-        if (activity instanceof ReactActivity)
+        if (activity instanceof PermissionAwareActivity)
         {
-          ((ReactActivity) activity).requestPermissions(PERMISSIONS, requestCode, listener);
+          ((PermissionAwareActivity) activity).requestPermissions(PERMISSIONS, requestCode, listener);
         }
         else if (activity instanceof OnImagePickerPermissionsCallback)
         {
